@@ -1,0 +1,414 @@
+:root {
+  --sign-green: #00693e;
+  --sign-green-deep: #004d2e;
+  --shield-blue: #0d3b84;
+  --shield-red: #b22234;
+  --gold: #ffb81c;
+  --asphalt: #23272b;
+  --asphalt-2: #2f353a;
+  --concrete: #f2f4f1;
+  --card: #ffffff;
+  --line: #d8ddd7;
+  --ink: #1c211e;
+  --ink-soft: #5a635d;
+  --radius: 14px;
+  --font-sans: 'Overpass', system-ui, sans-serif;
+  --font-mono: 'Overpass Mono', ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--concrete);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+select {
+  font-family: inherit;
+  font-size: 16px; /* prevents iOS zoom */
+}
+
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Header: green guide sign ---- */
+.guide-sign {
+  background: var(--sign-green);
+  color: #fff;
+  padding: 14px 16px 12px;
+  position: relative;
+}
+.guide-sign::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 3px solid rgba(255, 255, 255, 0.92);
+  border-radius: 10px;
+  pointer-events: none;
+}
+.guide-sign h1 {
+  font-weight: 900;
+  font-size: 1.35rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.guide-sign .sub {
+  font-size: 0.78rem;
+  font-weight: 600;
+  opacity: 0.9;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---- Main scroll area ---- */
+main {
+  flex: 1;
+  padding: 16px 14px 96px;
+}
+
+/* ---- Bottom nav: the road ---- */
+.roadbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 640px;
+  background: var(--asphalt);
+  display: flex;
+  padding-bottom: env(safe-area-inset-bottom);
+  border-top: 4px dashed var(--gold);
+  z-index: 20;
+}
+.roadbar button {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #aab3ac;
+  font-weight: 700;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 2px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.roadbar button .glyph {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.roadbar button.active {
+  color: var(--gold);
+}
+.roadbar button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+}
+
+/* ---- Cards & shared bits ---- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.card h2 {
+  font-size: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+.hint {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+}
+.btn-green {
+  background: var(--sign-green);
+  color: #fff;
+}
+.btn-blue {
+  background: var(--shield-blue);
+  color: #fff;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+.btn-danger {
+  background: transparent;
+  color: var(--shield-red);
+  border: 1px solid var(--shield-red);
+}
+.btn:focus-visible {
+  outline: 3px solid var(--shield-blue);
+  outline-offset: 2px;
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+input[type='text'],
+input[type='number'] {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  width: 100%;
+  background: #fff;
+}
+input:focus-visible {
+  outline: 2px solid var(--shield-blue);
+}
+
+/* ---- Odometer ---- */
+.odometer {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  background: var(--asphalt);
+  color: var(--gold);
+  border-radius: 8px;
+  padding: 2px 10px;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+}
+
+/* ---- Progress bar ---- */
+.progress {
+  height: 10px;
+  background: var(--line);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress > div {
+  height: 100%;
+  background: var(--sign-green);
+  border-radius: 99px;
+  transition: width 0.35s ease;
+}
+
+/* ---- License plates ---- */
+.plate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 8px;
+}
+.plate {
+  border: 2px solid var(--line);
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 4px 6px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
+  position: relative;
+  transition: transform 0.12s ease;
+}
+.plate:active {
+  transform: scale(0.95);
+}
+.plate .abbr {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  color: var(--ink);
+  letter-spacing: 0.12em;
+}
+.plate.spotted {
+  background: var(--shield-blue);
+  border-color: var(--shield-blue);
+  color: #cfe0ff;
+}
+.plate.spotted .abbr {
+  color: #fff;
+}
+.plate:focus-visible {
+  outline: 3px solid var(--gold);
+}
+
+/* ---- Farkle ---- */
+.player-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.player-row:last-child {
+  border-bottom: none;
+}
+.player-name {
+  flex: 1;
+  font-weight: 700;
+}
+.player-row.leader .player-name::after {
+  content: ' 🏁';
+}
+.score-entry input {
+  width: 110px;
+}
+
+table.score-ref {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+table.score-ref td {
+  padding: 5px 4px;
+  border-bottom: 1px solid var(--line);
+}
+table.score-ref td:last-child {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+/* ---- Trivia ---- */
+.trivia-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.trivia-option.correct {
+  border-color: var(--sign-green);
+  background: #e8f4ec;
+}
+.trivia-option.wrong {
+  border-color: var(--shield-red);
+  background: #fbeaea;
+}
+.trivia-option:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+/* ---- Scavenger ---- */
+.scav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.scav-item .pts {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+.scav-item.found {
+  background: #e8f4ec;
+  border-color: var(--sign-green);
+}
+.scav-item.found .label {
+  text-decoration: line-through;
+  color: var(--ink-soft);
+}
+
+/* ---- Trip log ---- */
+.log-item {
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.92rem;
+}
+.log-item:last-child {
+  border-bottom: none;
+}
+.log-item .meta {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+}
+
+.stat-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.stat-strip .stat {
+  background: var(--asphalt);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 8px;
+  text-align: center;
+}
+.stat-strip .stat .v {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 1.05rem;
+}
+.stat-strip .stat .l {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
