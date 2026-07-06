@@ -1,5 +1,5 @@
 import { usePersistentState } from '../lib/storage'
-import { STATES } from '../data'
+import { STATES, PLATE_THEMES } from '../data'
 
 export default function PlateBingo() {
   const [spotted, setSpotted] = usePersistentState('rt.plates', [])
@@ -22,23 +22,40 @@ export default function PlateBingo() {
           <div style={{ width: `${pct}%` }} />
         </div>
         <p className="hint" style={{ marginTop: 8 }}>
-          Tap a state when you spot its plate. Progress saves automatically — one running
-          list for the whole summer.
+          Plates start greyed out. Tap one when you spot it on the road and it lights up in
+          its real colors. One running board for the whole summer.
         </p>
       </div>
 
       <div className="plate-grid">
         {STATES.map(([abbr, name]) => {
           const on = spotted.includes(abbr)
+          const t =
+            PLATE_THEMES[abbr] || { bg: '#fff', name: '#1a1a1a', num: '#1a1a1a', slogan: '' }
           return (
             <button
               key={abbr}
-              className={`plate${on ? ' spotted' : ''}`}
+              className={`plate ${on ? 'spotted' : 'todo'}`}
               onClick={() => toggle(abbr)}
               aria-pressed={on}
+              aria-label={`${name}${on ? ' — spotted' : ''}`}
+              style={{ '--pbg': t.bg, '--pname': t.name, '--pnum': t.num }}
             >
-              <span className="abbr">{abbr}</span>
-              {name}
+              <span className="plate-bolt" aria-hidden="true" />
+              <span className="plate-bolt r" aria-hidden="true" />
+              {t.icon && (
+                <span className="plate-icon" aria-hidden="true">
+                  {t.icon}
+                </span>
+              )}
+              <span className="plate-state">{name}</span>
+              <span className="plate-num">{abbr}</span>
+              {t.slogan && <span className="plate-slogan">{t.slogan}</span>}
+              {on && (
+                <span className="plate-check" aria-hidden="true">
+                  ✓
+                </span>
+              )}
             </button>
           )
         })}

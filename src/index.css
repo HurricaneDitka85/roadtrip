@@ -232,43 +232,128 @@ input:focus-visible {
 /* ---- License plates ---- */
 .plate-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 9px;
 }
 .plate {
-  border: 2px solid var(--line);
-  background: #fff;
-  border-radius: 8px;
-  padding: 8px 4px 6px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--ink-soft);
+  --pbg: #fff;
+  --pname: #1a1a1a;
+  --pnum: #1a1a1a;
   position: relative;
-  transition: transform 0.12s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  aspect-ratio: 12 / 7;
+  padding: 6px 6px 5px;
+  overflow: hidden;
+  background: var(--pbg);
+  border: 1.5px solid rgba(0, 0, 0, 0.28);
+  border-radius: 9px;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0, 0, 0, 0.22);
+  transition: transform 0.12s ease, filter 0.3s ease, opacity 0.3s ease;
 }
 .plate:active {
   transform: scale(0.95);
 }
-.plate .abbr {
-  display: block;
+/* Mounting-bolt holes for realism */
+.plate-bolt {
+  position: absolute;
+  top: 6px;
+  left: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.4));
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+.plate-bolt.r {
+  left: auto;
+  right: 9px;
+}
+/* Faint state graphic behind the number */
+.plate-icon {
+  position: absolute;
+  right: 4px;
+  bottom: 2px;
+  font-size: 1.7rem;
+  line-height: 1;
+  opacity: 0.22;
+  pointer-events: none;
+}
+.plate-state {
+  max-width: 100%;
+  font-size: 0.46rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--pname);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 1;
+}
+.plate-num {
   font-family: var(--font-mono);
-  font-size: 1.05rem;
-  color: var(--ink);
-  letter-spacing: 0.12em;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.1em;
+  color: var(--pnum);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+  z-index: 1;
+}
+.plate-slogan {
+  max-width: 100%;
+  font-size: 0.4rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--pname);
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 1;
+}
+.plate-check {
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+  display: grid;
+  place-items: center;
+  font-size: 0.62rem;
+  font-weight: 900;
+  color: #fff;
+  background: var(--sign-green);
+  border: 1.5px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+/* Not yet spotted: greyed-out ghost */
+.plate.todo {
+  filter: grayscale(1) opacity(0.42);
 }
 .plate.spotted {
-  background: var(--shield-blue);
-  border-color: var(--shield-blue);
-  color: #cfe0ff;
+  animation: plate-pop 0.32s ease;
 }
-.plate.spotted .abbr {
-  color: #fff;
+@keyframes plate-pop {
+  0% {
+    transform: scale(0.85);
+  }
+  55% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 .plate:focus-visible {
   outline: 3px solid var(--gold);
+  outline-offset: 1px;
 }
 
 /* ---- Farkle ---- */
