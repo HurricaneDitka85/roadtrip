@@ -1,15 +1,29 @@
 import { usePersistentState } from './lib/storage'
 import PlateBingo from './components/PlateBingo'
-import Farkle from './components/Farkle'
-import Trivia from './components/Trivia'
+import Alphabet from './components/Alphabet'
+import ObjectBingo from './components/ObjectBingo'
+import SlugBug from './components/SlugBug'
 import Scavenger from './components/Scavenger'
+import Trivia from './components/Trivia'
+import WouldYouRather from './components/WouldYouRather'
+import MadLibs from './components/MadLibs'
+import Farkle from './components/Farkle'
+import TicTacToe from './components/TicTacToe'
+import GuessArrival from './components/GuessArrival'
 import TripLog from './components/TripLog'
 
 const TABS = [
   { id: 'plates', label: 'Plates', glyph: '🚗', el: <PlateBingo /> },
-  { id: 'farkle', label: 'Farkle', glyph: '🎲', el: <Farkle /> },
-  { id: 'trivia', label: 'Trivia', glyph: '❓', el: <Trivia /> },
+  { id: 'alphabet', label: 'A–Z', glyph: '🔤', el: <Alphabet /> },
+  { id: 'bingo', label: 'Bingo', glyph: '🎱', el: <ObjectBingo /> },
+  { id: 'slugbug', label: 'Slug Bug', glyph: '🐞', el: <SlugBug /> },
   { id: 'hunt', label: 'Hunt', glyph: '🔭', el: <Scavenger /> },
+  { id: 'trivia', label: 'Trivia', glyph: '❓', el: <Trivia /> },
+  { id: 'wyr', label: 'Rather', glyph: '🤔', el: <WouldYouRather /> },
+  { id: 'madlibs', label: 'Mad Libs', glyph: '📝', el: <MadLibs /> },
+  { id: 'farkle', label: 'Farkle', glyph: '🎲', el: <Farkle /> },
+  { id: 'ttt', label: 'Tic-Tac', glyph: '⭕', el: <TicTacToe /> },
+  { id: 'guess', label: 'Guess', glyph: '🎯', el: <GuessArrival /> },
   { id: 'trip', label: 'Trip', glyph: '🗺️', el: <TripLog /> },
 ]
 

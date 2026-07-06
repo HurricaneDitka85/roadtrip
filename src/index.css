@@ -98,24 +98,34 @@ main {
   max-width: 640px;
   background: var(--asphalt);
   display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
   padding-bottom: env(safe-area-inset-bottom);
   border-top: 4px dashed var(--gold);
   z-index: 20;
 }
+.roadbar::-webkit-scrollbar {
+  display: none;
+}
 .roadbar button {
-  flex: 1;
+  flex: 0 0 auto;
+  min-width: 60px;
+  scroll-snap-align: start;
   background: none;
   border: none;
   color: #aab3ac;
   font-weight: 700;
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 8px 2px 10px;
+  letter-spacing: 0.04em;
+  padding: 8px 8px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3px;
+  white-space: nowrap;
 }
 .roadbar button .glyph {
   font-size: 1.25rem;
@@ -489,6 +499,300 @@ table.score-ref td:last-child {
   text-transform: uppercase;
   letter-spacing: 0.07em;
   opacity: 0.85;
+}
+
+/* ---- Alphabet game ---- */
+.alpha-target {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 4.5rem;
+  line-height: 1;
+  color: var(--sign-green);
+}
+.alpha-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 6px;
+}
+.alpha-cell {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink-soft);
+}
+.alpha-cell.got {
+  background: #e8f4ec;
+  border-color: var(--sign-green);
+  color: var(--sign-green);
+}
+.alpha-cell.now {
+  background: var(--sign-green);
+  border-color: var(--sign-green);
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 105, 62, 0.25);
+}
+
+/* ---- Would You Rather ---- */
+.wyr-card {
+  text-align: center;
+}
+.wyr-q {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  margin-bottom: 12px;
+}
+.wyr-option {
+  width: 100%;
+  border-radius: 12px;
+  padding: 16px 14px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  border: 3px solid transparent;
+  line-height: 1.25;
+}
+.wyr-option.a {
+  background: var(--shield-blue);
+}
+.wyr-option.b {
+  background: var(--sign-green);
+}
+.wyr-option.chosen {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(255, 184, 28, 0.3);
+}
+.wyr-or {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin: 10px 0;
+}
+
+/* ---- Slug Bug ---- */
+.bug-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.bug-row.leader {
+  border-color: var(--gold);
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+.bug-info {
+  flex: 1;
+  min-width: 0;
+}
+.bug-name {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bug-row.leader .bug-name::after {
+  content: ' 👑';
+}
+.bug-count {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--asphalt);
+  line-height: 1;
+}
+.bug-plus {
+  border: none;
+  border-radius: 10px;
+  background: var(--sign-green);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 12px 14px;
+  white-space: nowrap;
+}
+.bug-minus {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink-soft);
+  border-radius: 10px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+}
+.bug-remove {
+  padding: 8px 10px;
+}
+
+/* ---- Mad Libs ---- */
+.madlib-field {
+  display: block;
+  margin-bottom: 10px;
+}
+.madlib-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--shield-blue);
+  margin-bottom: 4px;
+}
+.madlib-story {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ---- Tic-Tac-Toe ---- */
+.ttt-score {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+.ttt-tally {
+  background: var(--concrete);
+  border-radius: 10px;
+  padding: 8px;
+  text-align: center;
+}
+.ttt-tally .v {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+.ttt-tally .l {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+}
+.ttt-tally.x .v {
+  color: var(--shield-blue);
+}
+.ttt-tally.o .v {
+  color: var(--shield-red);
+}
+.ttt-status {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+  color: var(--ink-soft);
+}
+.ttt-status.win {
+  color: var(--sign-green);
+  font-size: 1.15rem;
+}
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.ttt-cell {
+  aspect-ratio: 1;
+  border: 2px solid var(--line);
+  background: #fff;
+  border-radius: 12px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 2.6rem;
+  line-height: 1;
+}
+.ttt-cell.x {
+  color: var(--shield-blue);
+}
+.ttt-cell.o {
+  color: var(--shield-red);
+}
+.ttt-cell.hot {
+  background: #e8f4ec;
+  border-color: var(--sign-green);
+}
+.ttt-cell:disabled {
+  opacity: 1;
+}
+
+/* ---- Object Bingo ---- */
+.bingo-card {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+.bingo-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3px;
+  font-size: 0.56rem;
+  font-weight: 600;
+  line-height: 1.15;
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  overflow: hidden;
+}
+.bingo-cell.on {
+  background: var(--shield-blue);
+  border-color: var(--shield-blue);
+  color: #fff;
+}
+.bingo-cell.free {
+  background: var(--asphalt);
+  border-color: var(--asphalt);
+  color: var(--gold);
+  font-weight: 800;
+}
+.bingo-cell.hot {
+  background: var(--sign-green);
+  border-color: var(--sign-green);
+  color: #fff;
+}
+.bingo-win {
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: var(--asphalt);
+  background: var(--gold);
+  border: none;
+}
+
+/* ---- Guess the Arrival ---- */
+.guess-results {
+  margin-top: 12px;
+}
+.guess-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  background: var(--concrete);
+  font-weight: 600;
+}
+.guess-result.win {
+  background: #e8f4ec;
+  border: 1px solid var(--sign-green);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -130,3 +130,83 @@ export const SCAVENGER = [
   { label: 'Runaway truck ramp', pts: 15 },
   { label: 'State welcome sign', pts: 10 },
 ]
+
+// ---- Would You Rather: family-friendly this-or-that prompts ----
+export const WYR = [
+  ['have a pet dinosaur', 'have a pet dragon'],
+  ['be able to fly', 'be able to turn invisible'],
+  ['only eat pizza forever', 'only eat tacos forever'],
+  ['have a car that drives on water', 'have a car that flies'],
+  ['be the funniest kid in class', 'be the smartest kid in class'],
+  ['have super speed', 'have super strength'],
+  ['visit outer space', 'explore the deep ocean'],
+  ['have hands for feet', 'have feet for hands'],
+  ['be able to talk to animals', 'be able to speak every language'],
+  ['live in a treehouse', 'live in a castle'],
+  ['always have to sing instead of talk', 'always have to dance while walking'],
+  ['have a giant swimming pool', 'have a giant trampoline'],
+  ['eat a bug for $100', 'skip dessert for a month'],
+  ['be a famous movie star', 'be a famous athlete'],
+  ['have it always be summer', 'have it always be winter'],
+  ['own a real lightsaber', 'own a real magic wand'],
+  ['never have homework again', 'never have chores again'],
+  ['have a robot best friend', 'have a talking pet'],
+  ['ride a roller coaster all day', 'play video games all day'],
+  ['sneeze glitter', 'burp bubbles'],
+  ['have a nose that glows when you lie', 'have ears that wiggle when you are happy'],
+  ['travel 100 years into the future', 'travel 100 years into the past'],
+  ['be able to pause time', 'be able to rewind time'],
+  ['have unlimited ice cream', 'have unlimited pizza'],
+  ['be as tall as a giraffe', 'be as small as a mouse'],
+  ['have a slide instead of stairs', 'have a fire pole instead of stairs'],
+  ['control the weather', 'control your dreams'],
+  ['have spaghetti for hair', 'have teeth made of marshmallows'],
+  ['always win at every game', 'always know the right answer'],
+  ['live where it never rains', 'live where it snows every day'],
+  ['be a wizard', 'be a superhero'],
+  ['have a jetpack', 'have a hoverboard'],
+]
+
+// ---- Mad Libs: fill-in-the-blank road stories ----
+// %1, %2 … map to the blanks array in order.
+export const MADLIBS = [
+  {
+    title: 'The Big Detour',
+    blanks: ['adjective', 'animal (plural)', 'silly food', 'family member', 'verb ending in -ing', 'a number', 'place'],
+    text:
+      "We were driving down the %1 highway when a herd of %2 blocked the road! " +
+      "To get them to move, Dad threw a giant %3 out the window. %4 started %5 so loudly that we had to pull over %6 times before we finally made it to %7.",
+  },
+  {
+    title: 'Are We There Yet?',
+    blanks: ['a number', 'adjective', 'body part', 'noun', 'famous person', 'color', 'sound'],
+    text:
+      "After %1 hours in the car, everyone was getting %2. My %3 was asleep and the back seat smelled like an old %4. " +
+      "Suddenly we saw %5 driving a %6 truck, honking and yelling '%7!' It was the weirdest rest stop ever.",
+  },
+  {
+    title: 'The Roadside Diner',
+    blanks: ['adjective', 'food', 'liquid', 'animal', 'verb', 'a number', 'exclamation'],
+    text:
+      "We stopped at a %1 little diner for lunch. I ordered %2 with a tall glass of %3. " +
+      "While we ate, a %4 wandered in and tried to %5 my plate! The waiter chased it out %6 times and everyone shouted '%7'",
+  },
+  {
+    title: 'Worlds Greatest Souvenir',
+    blanks: ['adjective', 'noun', 'color', 'a number', 'animal', 'verb ending in -ed', 'family member'],
+    text:
+      "At the gift shop I found the most %1 %2 I had ever seen. It was %3 and cost %4 dollars. " +
+      "It had a picture of a %5 on it that %6 whenever you touched it. %7 said it was a waste of money, but I bought two.",
+  },
+]
+
+// ---- Object Bingo: things to spot, filled onto a 5x5 card ----
+export const BINGO_ITEMS = [
+  'Red car', 'Blue truck', 'Motorcycle', 'School bus', 'Police car',
+  'Cow', 'Horse', 'Dog in a car', 'Bird on a wire', 'Tractor',
+  'Water tower', 'Windmill', 'Bridge', 'Tunnel', 'Big flag',
+  'Gas station', 'Fast food sign', 'Billboard', 'Rest stop sign', 'Mile marker',
+  'License plate from another state', 'RV or camper', 'Boat on a trailer', 'Road work sign', 'Speed limit 70+',
+  'Church steeple', 'Barn', 'Bright yellow car', 'Hay bales', 'Airplane in the sky',
+  'Lake or pond', 'Mountain', 'Traffic jam', 'Rainbow or cloud shaped like something',
+]
